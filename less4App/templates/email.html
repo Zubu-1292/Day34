@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Email{% endblock %}
+{% block content %}
+
+<h1>Contact Us</h1>
+<form method="post">
+  {% csrf_token %}
+  {% for field in form %}
+      <div class="form-group row">
+        {{field.errors}}
+        <label class="col-sm-2 col-form-label" for="{{field.name}}">{{field.label_tag}}</label>
+        <!-- {{field.label_tag}} -->
+        {{field}}
+        {% if field.help_text %}
+        <p class="help">{{field.help_text|safe}}</p>
+        {% endif %}
+
+      </div>
+   {% endfor %}
+    <div class="form-actions">
+      <button type="Submit">Send</button>
+
+    </div>
+</form>
+{% endblock %}
